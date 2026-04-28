@@ -176,52 +176,50 @@ document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
 // ===== RENDER HERO =====
 function renderHero() {
-  document.getElementById('hero-name').innerHTML = `Hi, I'm <span class="highlight">${PORTFOLIO.name}</span>`;
-  document.getElementById('hero-title').textContent = PORTFOLIO.title;
-  document.getElementById('hero-desc').textContent = PORTFOLIO.intro;
+  // Hero is hardcoded in HTML — nothing to render
 }
 
 // ===== RENDER ABOUT =====
 function renderAbout() {
-  document.getElementById('about-bio').textContent = PORTFOLIO.bio;
-
-  const photoWrap = document.getElementById('photo-wrap');
-  if (PORTFOLIO.photo) {
-    photoWrap.innerHTML = `<img src="${PORTFOLIO.photo}" alt="${PORTFOLIO.name}" />`;
-  } else {
-    photoWrap.innerHTML = `<div class="photo-placeholder">📸<p>Upload your photo</p></div>`;
-  }
+  const bioEl = document.getElementById('about-bio');
+  if (bioEl) bioEl.textContent = PORTFOLIO.bio;
 
   const skillsContainer = document.getElementById('skills-container');
-  skillsContainer.innerHTML = PORTFOLIO.skills.map(cat => `
-    <div class="skill-category">
-      <h4>${cat.category}</h4>
-      <div class="skill-tags">
-        ${cat.items.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+  if (skillsContainer) {
+    skillsContainer.innerHTML = PORTFOLIO.skills.map(cat => `
+      <div class="skill-category">
+        <h4>${cat.category}</h4>
+        <div class="skill-tags">
+          ${cat.items.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+        </div>
       </div>
-    </div>
-  `).join('');
+    `).join('');
+  }
 }
 
 // ===== RENDER SKILLS SECTION =====
 function renderSkills() {
-  // Services
-  document.getElementById('skills-services').innerHTML = PORTFOLIO.services.map(s => `
+  const servicesEl = document.getElementById('skills-services');
+  const statsEl = document.getElementById('skills-stats');
+  const container = document.getElementById('skills-section-container');
+  const tabsEl = document.getElementById('skills-tech-tabs');
+  const gridEl = document.getElementById('skills-tech-grid');
+  const learningEl = document.getElementById('learning-inner');
+  if (!servicesEl || !statsEl || !container || !tabsEl || !gridEl || !learningEl) return;
+
+  servicesEl.innerHTML = PORTFOLIO.services.map(s => `
     <div class="service-card">
       <div class="service-icon">${s.icon}</div>
       <h3 class="service-title">${s.title}</h3>
       <p class="service-desc">${s.desc}</p>
     </div>`).join('');
 
-  // Stats
-  document.getElementById('skills-stats').innerHTML = PORTFOLIO.stats.map(s => `
+  statsEl.innerHTML = PORTFOLIO.stats.map(s => `
     <div class="stat-item">
       <span class="stat-value">${s.value}</span>
       <span class="stat-label">${s.label}</span>
     </div>`).join('');
 
-  // Progress bar cards
-  const container = document.getElementById('skills-section-container');
   container.innerHTML = `<div class="skills-section-grid">${PORTFOLIO.skillCards.map(card => `
     <div class="skill-card fade-in">
       <div class="skill-card-header">
@@ -245,12 +243,7 @@ function renderSkills() {
       }
     });
   }, { threshold: 0.3 });
-
   container.querySelectorAll('.skill-card').forEach(card => { fadeObserver.observe(card); barObserver.observe(card); });
-
-  // Tech stack tabs
-  const tabsEl = document.getElementById('skills-tech-tabs');
-  const gridEl = document.getElementById('skills-tech-grid');
 
   function renderTechTab(tabName) {
     tabsEl.querySelectorAll('.tech-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabName));
@@ -258,16 +251,13 @@ function renderSkills() {
     gridEl.innerHTML = (found ? found.techs : []).map(t => `
       <div class="tech-pill">${t.emoji} <span>${t.name}</span></div>`).join('');
   }
-
   tabsEl.innerHTML = PORTFOLIO.techStack.map(t =>
     `<button class="tech-tab" data-tab="${t.tab}">${t.tab}</button>`).join('');
   tabsEl.addEventListener('click', e => { if (e.target.classList.contains('tech-tab')) renderTechTab(e.target.dataset.tab); });
   renderTechTab('All');
 
-  // Currently Learning ticker
-  const items = [...PORTFOLIO.learning, ...PORTFOLIO.learning]; // duplicate for seamless loop
-  document.getElementById('learning-inner').innerHTML = items.map(t =>
-    `<span class="learning-item">${t}</span>`).join('');
+  const items = [...PORTFOLIO.learning, ...PORTFOLIO.learning];
+  learningEl.innerHTML = items.map(t => `<span class="learning-item">${t}</span>`).join('');
 }
 
 // ===== RENDER JOURNEY =====
@@ -293,15 +283,21 @@ function renderJourney() {
 // ===== RENDER PROJECTS =====
 function renderProjectFilters(projects, activeFilter) {
   const filtersEl = document.getElementById('project-filters');
+  if (!filtersEl) return;
   filtersEl.innerHTML = PORTFOLIO.projectCategories.map(cat =>
     `<button class="proj-filter-btn${cat === activeFilter ? ' active' : ''}" data-cat="${cat}">${cat}</button>`
   ).join('');
 }
 
 async function renderProjects() {
+  const featuredEl = document.getElementById('featured-project');
+  const filtersEl = document.getElementById('project-filters');
+  const container = document.getElementById('projects-container');
+  if (!featuredEl || !filtersEl || !container) return;
+
   // Featured project
   const f = PORTFOLIO.featured;
-  document.getElementById('featured-project').innerHTML = `
+  featuredEl.innerHTML = `
     <div class="featured-badge">⭐ Featured Project</div>
     <div class="featured-body">
       <div class="featured-left">
@@ -317,7 +313,6 @@ async function renderProjects() {
     </div>`;
 
   // Filter tabs
-  const filtersEl = document.getElementById('project-filters');
   renderProjectFilters([], 'All');
   filtersEl.addEventListener('click', e => {
     if (!e.target.classList.contains('proj-filter-btn')) return;
@@ -326,7 +321,6 @@ async function renderProjects() {
     filterAndRenderCards(cat);
   });
 
-  const container = document.getElementById('projects-container');
   container.innerHTML = `<div class="loading-wrap"><div class="spinner"></div></div>`;
 
   let allProjects = [];
@@ -380,20 +374,17 @@ function getDemoProjects() {
 
 // ===== CONTACT FORM =====
 function initContactForm() {
-  document.getElementById('contact-email').textContent = PORTFOLIO.email;
-  document.getElementById('contact-location').textContent = PORTFOLIO.location;
-
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
+  if (!form) return;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
-    const data = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      message: form.message.value.trim(),
-    };
+    const nameVal    = form.querySelector('#name').value.trim();
+    const emailVal   = form.querySelector('#email').value.trim();
+    const messageVal = form.querySelector('#message').value.trim();
+    const data = { name: nameVal, email: emailVal, message: messageVal };
 
     btn.disabled = true;
     btn.textContent = 'Sending...';
@@ -415,16 +406,19 @@ function initContactForm() {
       status.className = 'form-status error';
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Send Message';
+      btn.textContent = 'Send Message ✉️';
     }
   });
 }
 
 // ===== FOOTER =====
 function renderFooter() {
-  document.getElementById('footer-github').href = PORTFOLIO.github;
-  document.getElementById('footer-linkedin').href = PORTFOLIO.linkedin;
-  document.getElementById('footer-name').textContent = PORTFOLIO.name;
+  const gh = document.getElementById('footer-github');
+  const li = document.getElementById('footer-linkedin');
+  const fn = document.getElementById('footer-name');
+  if (gh) gh.href = PORTFOLIO.github;
+  if (li) li.href = PORTFOLIO.linkedin;
+  if (fn) fn.textContent = PORTFOLIO.name;
 }
 
 // ===== INIT =====
