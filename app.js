@@ -18,6 +18,82 @@ const PORTFOLIO = {
     { category: 'Backend', items: ['Node.js', 'Express', 'REST APIs', 'GraphQL'] },
     { category: 'Tools & Infra', items: ['Git', 'Docker', 'AWS', 'PostgreSQL', 'MySQL'] },
   ],
+  skillCards: [
+    {
+      icon: '🌐', title: 'Frontend',
+      bars: [
+        { name: 'HTML & CSS', level: 90 },
+        { name: 'JavaScript', level: 85 },
+        { name: 'React', level: 75 },
+      ]
+    },
+    {
+      icon: '⚙️', title: 'Backend',
+      bars: [
+        { name: 'Node.js / Express', level: 80 },
+        { name: 'REST APIs', level: 85 },
+        { name: 'PHP', level: 70 },
+      ]
+    },
+    {
+      icon: '🗄️', title: 'Databases',
+      bars: [
+        { name: 'MySQL', level: 80 },
+        { name: 'PostgreSQL', level: 70 },
+        { name: 'MongoDB', level: 60 },
+      ]
+    },
+    {
+      icon: '🛠️', title: 'Tools & DevOps',
+      bars: [
+        { name: 'Git & GitHub', level: 85 },
+        { name: 'Docker', level: 60 },
+        { name: 'Linux / CLI', level: 70 },
+      ]
+    },
+  ],
+  services: [
+    { icon: '🖥️', title: 'Frontend Development', desc: 'Building responsive, pixel-perfect UIs with React, HTML, CSS & JavaScript.' },
+    { icon: '🔧', title: 'Backend Development', desc: 'Designing robust REST APIs and server-side logic with Node.js, Express & PHP.' },
+    { icon: '🗄️', title: 'Database Design', desc: 'Structuring and optimizing databases with MySQL, PostgreSQL and MongoDB.' },
+  ],
+  stats: [
+    { value: '2+', label: 'Years Experience' },
+    { value: '10+', label: 'Projects Built' },
+    { value: '5+', label: 'Technologies' },
+    { value: '100%', label: 'Passion' },
+  ],
+  techStack: [
+    { tab: 'All', techs: [
+      { name: 'HTML5', emoji: '🌐' }, { name: 'CSS3', emoji: '🎨' }, { name: 'JavaScript', emoji: '⚡' },
+      { name: 'React', emoji: '⚛️' }, { name: 'Node.js', emoji: '🟢' }, { name: 'Express', emoji: '🚂' },
+      { name: 'PHP', emoji: '🐘' }, { name: 'MySQL', emoji: '🐬' }, { name: 'PostgreSQL', emoji: '🐘' },
+      { name: 'MongoDB', emoji: '🍃' }, { name: 'Git', emoji: '🔀' }, { name: 'Docker', emoji: '🐳' },
+      { name: 'Linux', emoji: '🐧' }, { name: 'VS Code', emoji: '💻' }, { name: 'REST API', emoji: '🔗' },
+    ]},
+    { tab: 'Frontend', techs: [
+      { name: 'HTML5', emoji: '🌐' }, { name: 'CSS3', emoji: '🎨' }, { name: 'JavaScript', emoji: '⚡' }, { name: 'React', emoji: '⚛️' },
+    ]},
+    { tab: 'Backend', techs: [
+      { name: 'Node.js', emoji: '🟢' }, { name: 'Express', emoji: '🚂' }, { name: 'PHP', emoji: '🐘' }, { name: 'REST API', emoji: '🔗' },
+    ]},
+    { tab: 'Database', techs: [
+      { name: 'MySQL', emoji: '🐬' }, { name: 'PostgreSQL', emoji: '🐘' }, { name: 'MongoDB', emoji: '🍃' },
+    ]},
+    { tab: 'Tools', techs: [
+      { name: 'Git', emoji: '🔀' }, { name: 'Docker', emoji: '🐳' }, { name: 'Linux', emoji: '🐧' }, { name: 'VS Code', emoji: '💻' },
+    ]},
+  ],
+  learning: ['TypeScript', 'Next.js', 'AWS', 'GraphQL', 'Redis', 'Kubernetes', 'Tailwind CSS', 'Prisma', 'tRPC', 'Supabase'],
+  featured: {
+    icon: '🏆',
+    title: 'E-Commerce Platform',
+    desc: 'A full-stack shopping platform with user authentication, product management, cart system, and Stripe payment integration. Built with React on the frontend and Node.js/Express on the backend.',
+    techs: ['React', 'Node.js', 'MySQL', 'Stripe', 'JWT'],
+    github: '#',
+    demo: '#',
+  },
+  projectCategories: ['All', 'Frontend', 'Backend', 'Full Stack'],
   journey: [
     {
       year: '2019',
@@ -127,6 +203,73 @@ function renderAbout() {
   `).join('');
 }
 
+// ===== RENDER SKILLS SECTION =====
+function renderSkills() {
+  // Services
+  document.getElementById('skills-services').innerHTML = PORTFOLIO.services.map(s => `
+    <div class="service-card">
+      <div class="service-icon">${s.icon}</div>
+      <h3 class="service-title">${s.title}</h3>
+      <p class="service-desc">${s.desc}</p>
+    </div>`).join('');
+
+  // Stats
+  document.getElementById('skills-stats').innerHTML = PORTFOLIO.stats.map(s => `
+    <div class="stat-item">
+      <span class="stat-value">${s.value}</span>
+      <span class="stat-label">${s.label}</span>
+    </div>`).join('');
+
+  // Progress bar cards
+  const container = document.getElementById('skills-section-container');
+  container.innerHTML = `<div class="skills-section-grid">${PORTFOLIO.skillCards.map(card => `
+    <div class="skill-card fade-in">
+      <div class="skill-card-header">
+        <span class="skill-card-icon">${card.icon}</span>
+        <h3 class="skill-card-title">${card.title}</h3>
+      </div>
+      <div class="skill-bar-list">
+        ${card.bars.map(b => `
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>${b.name}</span><span>${b.level}%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-level="${b.level}"></div></div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('')}</div>`;
+
+  const barObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => { bar.style.width = bar.dataset.level + '%'; });
+        barObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  container.querySelectorAll('.skill-card').forEach(card => { fadeObserver.observe(card); barObserver.observe(card); });
+
+  // Tech stack tabs
+  const tabsEl = document.getElementById('skills-tech-tabs');
+  const gridEl = document.getElementById('skills-tech-grid');
+
+  function renderTechTab(tabName) {
+    tabsEl.querySelectorAll('.tech-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabName));
+    const found = PORTFOLIO.techStack.find(t => t.tab === tabName);
+    gridEl.innerHTML = (found ? found.techs : []).map(t => `
+      <div class="tech-pill">${t.emoji} <span>${t.name}</span></div>`).join('');
+  }
+
+  tabsEl.innerHTML = PORTFOLIO.techStack.map(t =>
+    `<button class="tech-tab" data-tab="${t.tab}">${t.tab}</button>`).join('');
+  tabsEl.addEventListener('click', e => { if (e.target.classList.contains('tech-tab')) renderTechTab(e.target.dataset.tab); });
+  renderTechTab('All');
+
+  // Currently Learning ticker
+  const items = [...PORTFOLIO.learning, ...PORTFOLIO.learning]; // duplicate for seamless loop
+  document.getElementById('learning-inner').innerHTML = items.map(t =>
+    `<span class="learning-item">${t}</span>`).join('');
+}
+
 // ===== RENDER JOURNEY =====
 function renderJourney() {
   const container = document.getElementById('journey-container');
@@ -148,32 +291,61 @@ function renderJourney() {
 }
 
 // ===== RENDER PROJECTS =====
+function renderProjectFilters(projects, activeFilter) {
+  const filtersEl = document.getElementById('project-filters');
+  filtersEl.innerHTML = PORTFOLIO.projectCategories.map(cat =>
+    `<button class="proj-filter-btn${cat === activeFilter ? ' active' : ''}" data-cat="${cat}">${cat}</button>`
+  ).join('');
+}
+
 async function renderProjects() {
+  // Featured project
+  const f = PORTFOLIO.featured;
+  document.getElementById('featured-project').innerHTML = `
+    <div class="featured-badge">⭐ Featured Project</div>
+    <div class="featured-body">
+      <div class="featured-left">
+        <div class="featured-icon">${f.icon}</div>
+        <h3 class="featured-title">${f.title}</h3>
+        <p class="featured-desc">${f.desc}</p>
+        <div class="featured-techs">${f.techs.map(t => `<span class="tech-badge">${t}</span>`).join('')}</div>
+        <div class="featured-links">
+          ${f.github ? `<a href="${f.github}" target="_blank" class="btn btn-primary" style="font-size:0.85rem;padding:0.5rem 1.2rem">⭐ GitHub</a>` : ''}
+          ${f.demo ? `<a href="${f.demo}" target="_blank" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1.2rem">🔗 Live Demo</a>` : ''}
+        </div>
+      </div>
+    </div>`;
+
+  // Filter tabs
+  const filtersEl = document.getElementById('project-filters');
+  renderProjectFilters([], 'All');
+  filtersEl.addEventListener('click', e => {
+    if (!e.target.classList.contains('proj-filter-btn')) return;
+    const cat = e.target.dataset.cat;
+    renderProjectFilters([], cat);
+    filterAndRenderCards(cat);
+  });
+
   const container = document.getElementById('projects-container');
   container.innerHTML = `<div class="loading-wrap"><div class="spinner"></div></div>`;
 
+  let allProjects = [];
   try {
     const res = await fetch(`${API_BASE}/projects`);
-    if (!res.ok) throw new Error('Failed to fetch');
-    const projects = await res.json();
-
-    if (!projects.length) {
-      container.innerHTML = `<div class="error-msg"><span>📂</span>No projects found.</div>`;
-      return;
-    }
-
-    container.innerHTML = `<div class="projects-grid">${projects.map(projectCard).join('')}</div>`;
+    if (!res.ok) throw new Error();
+    allProjects = await res.json();
   } catch {
-    container.innerHTML = `
-      <div class="error-msg">
-        <span>⚠️</span>
-        <p>Could not load projects. Showing demo data.</p>
-      </div>
-      <div class="projects-grid" style="margin-top:1.5rem">${getDemoProjects().map(projectCard).join('')}</div>`;
+    allProjects = getDemoProjects();
   }
 
-  // Re-observe new fade-in elements
-  container.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+  function filterAndRenderCards(cat) {
+    const filtered = cat === 'All' ? allProjects : allProjects.filter(p => p.category === cat);
+    const list = filtered.length ? filtered : allProjects;
+    container.innerHTML = `<div class="projects-grid">${list.map(projectCard).join('')}</div>`;
+    container.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+  }
+
+  filterAndRenderCards('All');
 }
 
 function projectCard(p) {
@@ -198,9 +370,11 @@ function projectCard(p) {
 
 function getDemoProjects() {
   return [
-    { title: 'E-Commerce Platform', description: 'Full-stack shopping app with cart, auth, and payments.', technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'], github: '#', demo: '#' },
-    { title: 'Task Manager API', description: 'RESTful API with JWT auth, CRUD operations, and role-based access.', technologies: ['Express', 'MySQL', 'JWT', 'Sequelize'], github: '#' },
-    { title: 'Portfolio CMS', description: 'Content management system to manage portfolio projects dynamically.', technologies: ['Node.js', 'Express', 'React', 'Docker'], github: '#', demo: '#' },
+    { title: 'E-Commerce Platform', description: 'Full-stack shopping app with cart, auth, and payments.', technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'], category: 'Full Stack', github: '#', demo: '#' },
+    { title: 'Task Manager API', description: 'RESTful API with JWT auth, CRUD operations, and role-based access.', technologies: ['Express', 'MySQL', 'JWT', 'Sequelize'], category: 'Backend', github: '#' },
+    { title: 'Portfolio CMS', description: 'Content management system to manage portfolio projects dynamically.', technologies: ['Node.js', 'Express', 'React', 'Docker'], category: 'Full Stack', github: '#', demo: '#' },
+    { title: 'Weather Dashboard', description: 'Real-time weather app using OpenWeather API with location search.', technologies: ['HTML', 'CSS', 'JavaScript'], category: 'Frontend', github: '#', demo: '#' },
+    { title: 'Blog Platform', description: 'A markdown-based blog with admin panel and comment system.', technologies: ['PHP', 'MySQL', 'CSS'], category: 'Full Stack', github: '#' },
   ];
 }
 
@@ -256,6 +430,7 @@ function renderFooter() {
 // ===== INIT =====
 renderHero();
 renderAbout();
+renderSkills();
 renderJourney();
 renderProjects();
 initContactForm();

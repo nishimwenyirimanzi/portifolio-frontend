@@ -18,6 +18,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -31,23 +32,47 @@
 
   <!-- ===== HERO ===== -->
   <section id="home">
-    <div class="section-inner hero-content">
-      <div class="hero-badge fade-in">
-        <span></span> Available for work
+    <!-- Animated background blobs -->
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+
+    <div class="section-inner hero-grid">
+      <!-- LEFT: text -->
+      <div class="hero-text">
+        <div class="hero-badge fade-in">
+          <span class="hero-badge-dot"></span> Available for work
+        </div>
+
+        <h1 class="hero-name fade-in">
+          Hi, I'm<br>
+          <span class="hero-name-gradient">Nishimwe Fabrice</span>
+        </h1>
+
+        <div class="hero-role fade-in">
+          <span class="hero-role-prefix">&lt;</span>
+          <span class="hero-role-text">Full Stack Developer</span>
+          <span class="hero-role-prefix">/&gt;</span>
+        </div>
+
+        <p class="hero-desc fade-in">I build fast, scalable, and beautiful web applications. Passionate about clean code, great UX, and solving real problems.</p>
+
+        <div class="hero-btns fade-in">
+          <a href="#projects" class="btn btn-primary">🚀 View Projects</a>
+          <a href="#contact" class="btn btn-outline">✉️ Contact Me</a>
+        </div>
+
+        <!-- Quick stats row -->
+        <div class="hero-stats fade-in">
+          <div class="hero-stat"><span class="hero-stat-num">2+</span><span class="hero-stat-lbl">Years Exp.</span></div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat"><span class="hero-stat-num">10+</span><span class="hero-stat-lbl">Projects</span></div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat"><span class="hero-stat-num">15+</span><span class="hero-stat-lbl">Technologies</span></div>
+        </div>
       </div>
-      <h1>Hi, I'm Nishimwe nyirimanzi (Fabrice)</h1>
-      <p>
-        Full Stack Software Developer
-        I build fast, scalable, and
-           beautiful web applications.
-             Passionate about clean code, great UX, 
-                 and solving real problems.</p>
-      <p class="hero-desc fade-in" id="hero-desc"></p>
-      <div class="hero-btns fade-in">
-        <a href="#projects" class="btn btn-primary">🚀 View Projects</a>
-         
-        <a href="#contact" class="btn btn-outline">✉️ Contact Me</a>
-      </div>
+
+
     </div>
   </section>
 
@@ -99,14 +124,210 @@
     </div>
   </section>
 
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <div class="section-inner">
+      <h2 class="section-title fade-in">Skills</h2>
+      <p class="section-subtitle fade-in">Technologies & tools I work with</p>
+
+      <!-- What I Do cards -->
+      <div class="skills-services fade-in" id="skills-services"></div>
+
+      <!-- Stats bar -->
+      <div class="skills-stats fade-in" id="skills-stats"></div>
+
+      <!-- Progress bar cards -->
+      <div id="skills-section-container"></div>
+
+      <!-- Tech stack tabs -->
+      <div class="skills-tech fade-in">
+        <div class="skills-tech-tabs" id="skills-tech-tabs"></div>
+        <div class="skills-tech-grid" id="skills-tech-grid"></div>
+      </div>
+
+      <!-- Currently Learning ticker -->
+      <div class="learning-strip fade-in">
+        <span class="learning-label">🔥 Currently Learning</span>
+        <div class="learning-track">
+          <div class="learning-inner" id="learning-inner"></div>
+        </div>
+      </div>
+
+      <!-- ===== RADAR CHART ===== -->
+      <!-- Edit the numbers in each polygon point & the text labels below -->
+      <div class="radar-wrap fade-in">
+        <h3 class="radar-heading">Skill Radar</h3>
+        <div class="radar-chart-area">
+          <svg class="radar-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid rings (don't edit) -->
+            <polygon points="150,50 230,100 230,200 150,250 70,200 70,100" fill="none" stroke="rgba(108,99,255,0.15)" stroke-width="1"/>
+            <polygon points="150,80 210,115 210,185 150,220 90,185 90,115" fill="none" stroke="rgba(108,99,255,0.15)" stroke-width="1"/>
+            <polygon points="150,110 190,130 190,170 150,190 110,170 110,130" fill="none" stroke="rgba(108,99,255,0.15)" stroke-width="1"/>
+            <polygon points="150,130 170,142 170,158 150,170 130,158 130,142" fill="none" stroke="rgba(108,99,255,0.15)" stroke-width="1"/>
+            <!-- Axis lines (don't edit) -->
+            <line x1="150" y1="150" x2="150" y2="50" stroke="rgba(108,99,255,0.2)" stroke-width="1"/>
+            <line x1="150" y1="150" x2="230" y2="100" stroke="rgba(108,99,255,0.2)" stroke-width="1"/>
+            <line x1="150" y1="150" x2="230" y2="200" stroke="rgba(108,99,255,0.2)" stroke-width="1"/>
+            <line x1="150" y1="150" x2="150" y2="250" stroke="rgba(108,99,255,0.2)" stroke-width="1"/>
+            <line x1="150" y1="150" x2="70" y2="200" stroke="rgba(108,99,255,0.2)" stroke-width="1"/>
+            <line x1="150" y1="150" x2="70" y2="100" stroke="rgba(108,99,255,0.2)" stroke-width="1"/>
+            <!--
+              EDIT THIS POLYGON to change your skill levels.
+              Each point maps to one skill axis (top → clockwise).
+              Formula: move each point closer to center (150,150) to lower the skill.
+              Top=Frontend, TopRight=Backend, BottomRight=Database,
+              Bottom=DevOps, BottomLeft=Problem Solving, TopLeft=UI/UX
+              Current values: 90%, 80%, 70%, 65%, 85%, 75%
+            -->
+            <polygon
+              points="150,60 222,104 222,196 150,240 78,196 78,104"
+              fill="rgba(108,99,255,0.2)" stroke="#6c63ff" stroke-width="2"
+              class="radar-shape"
+            />
+            <!-- Skill dots on each axis tip -->
+            <circle cx="150" cy="60"  r="4" fill="#6c63ff"/>
+            <circle cx="222" cy="104" r="4" fill="#6c63ff"/>
+            <circle cx="222" cy="196" r="4" fill="#6c63ff"/>
+            <circle cx="150" cy="240" r="4" fill="#6c63ff"/>
+            <circle cx="78"  cy="196" r="4" fill="#6c63ff"/>
+            <circle cx="78"  cy="104" r="4" fill="#6c63ff"/>
+            <!-- Labels — edit the text content to rename skills -->
+            <text x="150" y="38"  text-anchor="middle" class="radar-label">Frontend</text>
+            <text x="244" y="100" text-anchor="start"  class="radar-label">Backend</text>
+            <text x="244" y="204" text-anchor="start"  class="radar-label">Database</text>
+            <text x="150" y="268" text-anchor="middle" class="radar-label">DevOps</text>
+            <text x="56"  y="204" text-anchor="end"    class="radar-label">Problem Solving</text>
+            <text x="56"  y="100" text-anchor="end"    class="radar-label">UI / UX</text>
+          </svg>
+          <!-- Percentage labels — edit numbers to match your polygon above -->
+          <div class="radar-legend">
+            <div class="radar-legend-item"><span class="rli-dot"></span><span class="rli-name">Frontend</span><span class="rli-val">90%</span></div>
+            <div class="radar-legend-item"><span class="rli-dot"></span><span class="rli-name">Backend</span><span class="rli-val">80%</span></div>
+            <div class="radar-legend-item"><span class="rli-dot"></span><span class="rli-name">Database</span><span class="rli-val">70%</span></div>
+            <div class="radar-legend-item"><span class="rli-dot"></span><span class="rli-name">DevOps</span><span class="rli-val">65%</span></div>
+            <div class="radar-legend-item"><span class="rli-dot"></span><span class="rli-name">Problem Solving</span><span class="rli-val">85%</span></div>
+            <div class="radar-legend-item"><span class="rli-dot"></span><span class="rli-name">UI / UX</span><span class="rli-val">75%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SOFT SKILLS ===== -->
+      <!-- Edit the emoji, title, and description for each card -->
+      <div class="soft-skills-wrap fade-in">
+        <h3 class="radar-heading" style="margin-bottom:1.25rem">Soft Skills</h3>
+        <div class="soft-skills-grid">
+          <div class="soft-card">🧠<span>Problem Solving</span></div>
+          <div class="soft-card">🤝<span>Teamwork</span></div>
+          <div class="soft-card">💬<span>Communication</span></div>
+          <div class="soft-card">⏱️<span>Time Management</span></div>
+          <div class="soft-card">🔄<span>Adaptability</span></div>
+          <div class="soft-card">🎯<span>Attention to Detail</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== PROJECTS ===== -->
   <section id="projects">
     <div class="section-inner">
       <h2 class="section-title fade-in">Projects</h2>
-      <p class="section-subtitle fade-in">Things I will build</p>
-      <div id="projects-container">
-        <!-- Projects rendered by JS -->
-      </div>
+      <p class="section-subtitle fade-in">Things I've built & am building</p>
+
+      <!-- Featured project -->
+      <div id="featured-project" class="featured-project fade-in"></div>
+
+      <!-- Filter tabs -->
+      <div class="project-filters fade-in" id="project-filters"></div>
+
+      <div id="projects-container"></div>
+
+      <!--
+        ===== HARDCODED PROJECT CARDS =====
+        Copy/paste a .hc-card block to add a new project.
+        Edit: title, description, status badge, tech tags, links.
+        Status options: status-live | status-wip | status-archived
+      -->
+      <div class="hc-grid fade-in">
+
+        <!-- PROJECT 1 -->
+        <div class="hc-card">
+          <div class="hc-top">
+            <span class="hc-icon">🛍️</span>
+            <span class="hc-status status-live">● Live</span>
+          </div>
+          <h3 class="hc-title">E-Commerce Platform</h3>
+          <p class="hc-desc">Full-stack shopping app with cart, user authentication, product management, and Stripe payment integration.</p>
+          <div class="hc-tags">
+            <span>React</span><span>Node.js</span><span>MySQL</span><span>Stripe</span>
+          </div>
+          <div class="hc-links">
+            <a href="#" target="_blank" class="hc-btn hc-btn-gh">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="#" target="_blank" class="hc-btn hc-btn-demo">🔗 Demo</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="hc-card">
+          <div class="hc-top">
+            <span class="hc-icon">✅</span>
+            <span class="hc-status status-wip">● In Progress</span>
+          </div>
+          <h3 class="hc-title">Task Manager API</h3>
+          <p class="hc-desc">RESTful API with JWT authentication, CRUD operations, and role-based access control for team task management.</p>
+          <div class="hc-tags">
+            <span>Express</span><span>MySQL</span><span>JWT</span><span>Sequelize</span>
+          </div>
+          <div class="hc-links">
+            <a href="#" target="_blank" class="hc-btn hc-btn-gh">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div class="hc-card">
+          <div class="hc-top">
+            <span class="hc-icon">🌦️</span>
+            <span class="hc-status status-live">● Live</span>
+          </div>
+          <h3 class="hc-title">Weather Dashboard</h3>
+          <p class="hc-desc">Real-time weather app using OpenWeather API with city search, 5-day forecast, and dynamic background themes.</p>
+          <div class="hc-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>API</span>
+          </div>
+          <div class="hc-links">
+            <a href="#" target="_blank" class="hc-btn hc-btn-gh">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="#" target="_blank" class="hc-btn hc-btn-demo">🔗 Demo</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 4 -->
+        <div class="hc-card">
+          <div class="hc-top">
+            <span class="hc-icon">📝</span>
+            <span class="hc-status status-archived">● Archived</span>
+          </div>
+          <h3 class="hc-title">Blog Platform</h3>
+          <p class="hc-desc">Markdown-based blog with an admin panel, comment system, and category filtering. Built with PHP and MySQL.</p>
+          <div class="hc-tags">
+            <span>PHP</span><span>MySQL</span><span>CSS</span>
+          </div>
+          <div class="hc-links">
+            <a href="#" target="_blank" class="hc-btn hc-btn-gh">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+      </div><!-- end .hc-grid -->
     </div>
   </section>
 
